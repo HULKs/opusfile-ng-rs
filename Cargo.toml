@@ -1,4 +1,5 @@
 [package]
+description = "Bindings for the stand-alone decoder library for .opus streams"
 edition = "2021"
 homepage = "https://github.com/hulks/hulk"
 license = "BSD-3-Clause"
