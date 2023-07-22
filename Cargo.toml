@@ -1,0 +1,15 @@
+[package]
+edition = "2021"
+homepage = "https://github.com/hulks/hulk"
+license = "BSD-3-Clause"
+name = "opusfile-ng"
+version = "0.1.0"
+
+[build-dependencies]
+bindgen = "0.66.1"
+pkg-config = "0.3.27"
+
+[dependencies]
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+thiserror = "1.0.44"
