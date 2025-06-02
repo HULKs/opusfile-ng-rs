@@ -200,7 +200,7 @@ impl OggOpusFile {
         }
     }
 
-    pub fn bitrate_instant(&self) -> Result<i32, OpusFileError> {
+    pub fn bitrate_instant(&mut self) -> Result<i32, OpusFileError> {
         let result = unsafe { op_bitrate_instant(self.0) };
         if result < 0 {
             Err(OpusFileError::from_i32(result).unwrap_or(OpusFileError::Unknown))
@@ -228,7 +228,7 @@ impl OggOpusFile {
     }
 
     pub fn read(
-        &self,
+        &mut self,
         buffer: &mut [i16],
         link_index: Option<&mut i32>,
     ) -> Result<usize, OpusFileError> {
@@ -251,7 +251,7 @@ impl OggOpusFile {
     }
 
     pub fn read_float(
-        &self,
+        &mut self,
         buffer: &mut [f32],
         link_index: Option<&mut i32>,
     ) -> Result<usize, OpusFileError> {
@@ -273,7 +273,7 @@ impl OggOpusFile {
         }
     }
 
-    pub fn read_stereo(&self, buffer: &mut [i16]) -> Result<usize, OpusFileError> {
+    pub fn read_stereo(&mut self, buffer: &mut [i16]) -> Result<usize, OpusFileError> {
         let result = unsafe {
             op_read_stereo(
                 self.0,
@@ -288,7 +288,7 @@ impl OggOpusFile {
         }
     }
 
-    pub fn read_float_stereo(&self, buffer: &mut [f32]) -> Result<usize, OpusFileError> {
+    pub fn read_float_stereo(&mut self, buffer: &mut [f32]) -> Result<usize, OpusFileError> {
         let result = unsafe {
             op_read_float_stereo(
                 self.0,
@@ -303,7 +303,7 @@ impl OggOpusFile {
         }
     }
 
-    pub fn raw_seek(&self, byte_offset: i64) -> Result<(), OpusFileError> {
+    pub fn raw_seek(&mut self, byte_offset: i64) -> Result<(), OpusFileError> {
         let result = unsafe { op_raw_seek(self.0, byte_offset) };
         if result < 0 {
             Err(OpusFileError::from_i32(result).unwrap_or(OpusFileError::Unknown))
@@ -312,7 +312,7 @@ impl OggOpusFile {
         }
     }
 
-    pub fn pcm_seek(&self, sample_offset: i64) -> Result<(), OpusFileError> {
+    pub fn pcm_seek(&mut self, sample_offset: i64) -> Result<(), OpusFileError> {
         let result = unsafe { op_pcm_seek(self.0, sample_offset) };
         if result < 0 {
             Err(OpusFileError::from_i32(result).unwrap_or(OpusFileError::Unknown))
